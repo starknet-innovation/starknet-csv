@@ -1,6 +1,6 @@
 # Starknet CSV Airdrop — Product / Functional Spec (Reverse-Engineered)
 
-> **Status:** Draft. Based on observation of <https://csv.spaceshard.io/> plus the app's in-product "How to use" documentation. The CSV format and supported token types are **confirmed** from that doc; sections still marked _(inferred)_ are reasoned assumptions about the surrounding UX/execution and should be verified against the live app or source before building.
+> **Status:** Draft. Based on observation of an existing CSV-airdrop tool plus its in-product "How to use" documentation. The CSV format and supported token types are **confirmed** from that doc; sections still marked _(inferred)_ are reasoned assumptions about the surrounding UX/execution and should be verified against the live app or source before building.
 
 ---
 
