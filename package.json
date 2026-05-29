@@ -1,0 +1,34 @@
+{
+  "name": "starknet-csv",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Batch ERC-20 / NFT transfers on Starknet from a CSV, in a single transaction.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit"
+  },
+  "dependencies": {
+    "@starknet-io/get-starknet-core": "^5.0.0",
+    "@starknet-io/get-starknet-modal": "^5.0.0",
+    "@starknet-io/get-starknet-wallet-standard": "^5.0.0",
+    "@starknet-start/chains": "^1.0.7",
+    "@starknet-start/providers": "^1.0.7",
+    "@starknet-start/react": "^1.0.8",
+    "@tanstack/react-query": "^5.25.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "starknet": "^9.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.19",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "^5.6.0",
+    "vite": "^6.0.0"
+  }
+}
