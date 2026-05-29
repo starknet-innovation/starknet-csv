@@ -5,16 +5,14 @@ import { createStore } from "@starknet-io/get-starknet-discovery";
 import { jsonRpcProvider } from "@starknet-start/providers";
 import { StarknetConfig } from "@starknet-start/react";
 
+import { MAINNET_RPCS } from "../lib/rpc";
+
 // `publicProvider()` randomly hits starknet.drpc.org (which doesn't expose
 // starknet_call) and forces specVersion "0.10.0", causing "method not found"
-// errors when reading token decimals. Use a curated list of working mainnet
-// endpoints and let starknet.js negotiate the spec version.
-const MAINNET_RPCS = [
-  "https://rpc.starknet.lava.build",
-  "https://api.cartridge.gg/x/starknet/mainnet",
-  "https://starknet-rpc.publicnode.com",
-];
-
+// errors when reading token decimals. Use our curated list of working mainnet
+// endpoints and let starknet.js negotiate the spec version. (App reads —
+// token decimals — go through callWithFailover, which retries across all of
+// these; this single pick is just the default for any context-driven reads.)
 const provider = jsonRpcProvider({
   rpc: () => ({ nodeUrl: MAINNET_RPCS[Math.floor(Math.random() * MAINNET_RPCS.length)] }),
 });
