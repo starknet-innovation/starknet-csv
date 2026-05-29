@@ -2,8 +2,21 @@ import { type ReactNode, useEffect } from "react";
 
 import { mainnet } from "@starknet-start/chains";
 import { createStore } from "@starknet-io/get-starknet-discovery";
-import { publicProvider } from "@starknet-start/providers";
+import { jsonRpcProvider } from "@starknet-start/providers";
 import { StarknetConfig } from "@starknet-start/react";
+
+// `publicProvider()` randomly hits starknet.drpc.org (which doesn't expose
+// starknet_call) and forces specVersion "0.10.0", causing "method not found"
+// errors when reading token decimals. Use a curated list of working mainnet
+// endpoints and let starknet.js negotiate the spec version.
+const MAINNET_RPCS = [
+  "https://rpc.starknet.lava.build",
+  "https://api.cartridge.gg/x/starknet/mainnet",
+];
+
+const provider = jsonRpcProvider({
+  rpc: () => ({ nodeUrl: MAINNET_RPCS[Math.floor(Math.random() * MAINNET_RPCS.length)] }),
+});
 
 // Custom wallet-discovery store.
 //
@@ -32,10 +45,10 @@ export function StarknetProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  // Mainnet only, per spec. `publicProvider()` uses public RPC nodes — swap for a
-  // keyed endpoint (Alchemy/Infura/Blast) if large CSVs hit rate limits.
+  // Mainnet only, per spec. Public RPC endpoints — swap for a keyed endpoint
+  // (Alchemy/Infura/Blast) if large CSVs hit rate limits.
   return (
-    <StarknetConfig chains={[mainnet]} provider={publicProvider()} store={store} autoConnect>
+    <StarknetConfig chains={[mainnet]} provider={provider} store={store} autoConnect>
       {children}
     </StarknetConfig>
   );
