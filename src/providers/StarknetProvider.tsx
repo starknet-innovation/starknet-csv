@@ -12,6 +12,7 @@ import { StarknetConfig } from "@starknet-start/react";
 const MAINNET_RPCS = [
   "https://rpc.starknet.lava.build",
   "https://api.cartridge.gg/x/starknet/mainnet",
+  "https://starknet-rpc.publicnode.com",
 ];
 
 const provider = jsonRpcProvider({
